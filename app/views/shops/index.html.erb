@@ -1,0 +1,49 @@
+<% shops = Shop.all %>
+
+<table>
+<% shops.each do |shop| %>
+  <tr>
+    <td>
+      <%= shop.id %>
+      <%= shop.name %>
+      <% items = TagItem.where(shop_id: shop.id) %>
+      <% items.each do |i| %>
+        <%= i.id %>
+        <% tag = Tag.find(i.tag_id) %>
+        <%= tag.name %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<table>
+<% Tag.all.each do |tag| %>
+  <tr>
+    <td>
+
+
+
+
+      <%= tag.id %>
+      <%= tag.name %>/
+
+      <% tag.tag_items.each do |tag_item| %>
+        <%= tag_item.shop.name %>
+      <% end %>/
+
+
+      <% tag.shops.each do |s| %>
+        <%= s.name %>
+      <% end %>
+
+
+
+
+
+
+    </td>
+  </tr>
+<% end %>
+</table>
+
